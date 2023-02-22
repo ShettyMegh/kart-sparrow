@@ -1,0 +1,17 @@
+.btn{
+  background-color: white;
+  color: white;
+  border: 1px solid #7700FF;
+  background-color: #7700FF;
+  &:hover{
+    background-color: #6400d6;
+    border: 1px solid #7700FF;
+    color: white;
+  }
+}
+.btn-outline{
+  border: 1px solid #7700FF;
+  color: #7700FF;
+  background-color: transparent;
+  border-radius: 5px;
+}

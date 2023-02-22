@@ -1,0 +1,18 @@
+.navbar{
+  background-color: #FFCC56;
+  &-nav {
+    gap: 2rem;
+    align-items: center;
+    .dropdown-menu{
+      .dropdown-item{
+        cursor: pointer;
+      }
+    }
+    .nav-item{
+      a{
+        text-decoration: none;
+      }
+    }
+  }
+}
+
