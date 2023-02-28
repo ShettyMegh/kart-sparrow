@@ -1,7 +1,10 @@
 
-// #root{
-//   .App{
-//     font-weight: 400;
-//     margin: 1rem;
-//   }
-// }
+#root{
+  .App{
+    max-width: 1500px;
+    margin: 0 auto;
+    main{
+      min-height: calc(100vh - 157px);
+    }
+  }
+}

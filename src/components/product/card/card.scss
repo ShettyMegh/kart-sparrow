@@ -1,6 +1,31 @@
 .card{
+  margin: 2rem 15px;
+  width: calc(33.33% - 30px);
+  @media only screen and (max-width:1350px) {
+    margin: 2rem 3rem;
+    width: calc(33.33% - 6rem);
+  }
+
+  @media only screen and (max-width:1100px) {
+    margin: 2rem 1.5rem;
+    width: calc(33.33% - 3rem);
+  }
+
+  @media only screen and (max-width:975px) {
+    margin: 2rem 2rem;
+    width: calc(50% - 4rem);
+  }
+
+  @media only screen and (max-width:750px) {
+    margin: 2rem 1rem;
+    width: calc(50% - 2rem);
+  }
+
+  @media only screen and (max-width:620px) {
+    margin: 2rem 1rem;
+    width: calc(100% - 2rem);
+  }
   
-  margin: 1rem;
   border-radius: 20px;
   padding: 10px;
   border: 0px;
@@ -9,12 +34,17 @@
   -moz-box-shadow: 0px 0px 9px -4px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 9px -4px rgba(0,0,0,0.75);
   .card-img{
+    height: 280px;
     width: 100%;
     border-radius: 20px;
     background-color: white;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &-top{
-      width: 180px;
+      width: 280px;
+      max-height: 280px;
       padding: 10px 15px;
     }
   }
@@ -22,6 +52,10 @@
   &-body{
     padding: 20px 5px;
     padding-bottom: 0;
+    a{
+      all: unset;
+      cursor: pointer;
+    }
     .card-title{
       font-size:16px
     }
@@ -30,33 +64,11 @@
     }
 
     .card-price{
+      margin-top: 20px;
       p{
         color:#7700FF;
         font-weight: 500;
         font-size: 25px;
-      }
-    }
-
-    .card-rating{
-      background-color: #efe2ff;
-      padding: 12px 8px;
-      border-radius: 5px;
-      
-      i{
-        text-transform: capitalize;
-        color:rgb(255, 217, 0);
-      }
-      p{
-        margin-left: 2px;
-        color:black;
-        font-weight: 500;
-        font-size: 14px;
-        margin-bottom: 0;
-        span{
-          font-size: 12px;
-          margin-left: 5px;
-          font-weight: 300;
-        }
       }
     }
 

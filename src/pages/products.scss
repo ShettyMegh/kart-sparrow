@@ -1,0 +1,14 @@
+.products{
+  margin: 30px;
+  gap: 5px 10px;
+  align-items: stretch;
+  &__left{
+    flex-basis: 300px;
+    position: relative;
+  }
+  &__right{
+    position: relative;
+    width: 100%;
+    flex-basis: calc(100% - 300px);
+  }
+}

@@ -1,13 +1,16 @@
 import './header.scss'
 import Search from "../components/search/search"
 import Button from "../components/button/button";
-import { NavLink, Outlet } from "react-router-dom";
-
+import { NavLink, Link, Outlet } from "react-router-dom";
+import CartBtn from '../components/button/cartBtn';
+import React from 'react';
 const Header = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light">
-        <img className="navbar-brand" src="https://i.ibb.co/Ph1bJtW/Screenshot-2023-02-22-at-11-33-29-AM.png" width="250px"></img>
+      <nav className="navbar sticky-top navbar-expand-lg navbar-light">
+        <Link to="/">
+          <img className="navbar-brand" src="https://i.ibb.co/QJbSGys/Screenshot-2023-02-22-at-11-33-29-AM-2.png" width="250px"></img>
+        </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -33,8 +36,16 @@ const Header = () => {
               </div>
             </li>
             <li className="nav-item">
+              <NavLink to="cart">
+                {/* <Button css={{ fontSize: "15px" }} classes="nav-link btn-light text-light" /> */}
+                <CartBtn css={{ fontSize: "15px" }} classes="nav-link btn-light text-light" />
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
               <NavLink to="addProduct"><Button text="Add Product" css={{ fontSize: "15px" }} classes="nav-link btn-light text-light" /></NavLink>
             </li>
+
 
           </ul>
         </div>
@@ -44,4 +55,4 @@ const Header = () => {
   )
 }
 
-export default Header;
+export default React.memo(Header);

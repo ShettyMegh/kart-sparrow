@@ -1,21 +1,78 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useState, useEffect, createContext } from "react";
+import axios from "axios";
+
 import "./App.scss";
 import Header from "./layouts/header";
 import Home from "./pages/home";
 import AddProduct from "./pages/addProduct";
+import Products from "./pages/products";
 import Product from "./pages/product";
-import { createContext } from "react";
+import Footer from "./layouts/footer";
+import Cart from "./pages/cart";
+import NotFoundError from "./pages/notFoundError";
+import Response from "./components/response/response";
+export const productsContext = createContext();
 
 function App() {
+  const [productsData, setProductsData] = useState(null);
+  const [filterData, setFilterData] = useState(null);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+  const location = useLocation();
+  const [cartData,setCartData] = useState(localStorage.getItem('products')!==null? JSON.parse(localStorage.getItem("products")) : []);
+
+  useEffect(()=>{
+    localStorage.setItem("products",JSON.stringify(cartData));
+  },[cartData])
+
+
+  useEffect(() => {
+    setFilterData(productsData)
+  }, [productsData]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    location.pathname==='/' && fetchData();
+  }, [location]);
+
+
+  const fetchData = (searchKey="",url="") => {
+    axios
+      .get((searchKey==="")?`http://localhost:3232/products?_sort=id`:`http://localhost:3232/products?title_like=${searchKey}`)
+      .then((data) => {
+        setProductsData(data.data);
+        setIsLoadingProducts(false)
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Header />}>
-          <Route index element={<Home />}></Route>
-          <Route path="/products" element={<Product />}></Route>
-          <Route path="addproduct" element={<AddProduct />}></Route>
-        </Route>
-      </Routes>
+      <productsContext.Provider value={{productsData,setProductsData,isLoadingProducts,fetchData,cartData,setCartData, filterData, setFilterData}}>
+      <Header />
+      <main>
+        {filterData ? <Routes>
+          <Route path="/">
+            <Route index element={<Home />}></Route>
+            <Route
+              path="/products"
+              element={<Products />}
+            ></Route>
+            <Route
+              path="/products/:id"
+              element={<Product />}
+            ></Route>
+            <Route path="addproduct" element={<AddProduct />}></Route>
+            <Route path="cart" element={<Cart />}></Route>
+            <Route path="*" element={<NotFoundError />}></Route>
+          </Route>
+        </Routes> : <Response textClass="text-danger" message="Server is Down, Please Come back later" noImage={true}/>}
+      </main>
+      </productsContext.Provider>
+      <Footer />
     </div>
   );
 }

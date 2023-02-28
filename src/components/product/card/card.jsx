@@ -1,44 +1,46 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import "./card.scss"
 import Quantity from "../../quantity/quantity"
 import Button from "../../button/button"
+import { productsContext } from '../../../App';
+import { useContext } from 'react';
+import { handleAddCart } from '../../../actions/productCardActions';
+import Rating from '../rating/rating';
 
-const Card = (productData) => {
-  const data = {
-    id: 1, title: " Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops", price: 109.95, description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday", category: "men's clothing", image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg", rating: { rate: 3.9, count: 120 }
-  }
-
-
+const Card = ({ data }) => {
+  const [quant, setQuant] = useState(1);
+  const { setCartData } = useContext(productsContext);
   return (
-    <div className="card" style={{ width: "calc(33.33% - 32px )" }}>
-      <div className="card-img">
-        <img className="card-img-top" src={data.image} alt="Card cap" />
-      </div>
+    <div className="card">
+      <Link to={`/products/${data.id}`} >
+        <div className="card-img">
+          <img className="card-img-top" src={data.images[0]} alt="Card cap" />
+        </div>
+      </Link>
       <div className="card-body">
-        <h5 className="card-title">{data.title}</h5>
-        <p className="card-text">{data.description.slice(0, 80)}...</p>
+        <Link to={`/products/${data.id}`} >
+          <h5 className="card-title">{data.title}</h5>
+          <p className="card-text">{data.description.slice(0, 80)}...</p>
+        </Link>
         <div className="d-flex justify-content-between card-price">
           <p>{data.price}$</p>
-          <Quantity />
+
+          <Quantity quant={quant} setQuant={setQuant} />
         </div>
 
-        <div className="card-rating d-flex">
-          <i class="fa-sharp fa-solid fa-star"> </i>
-          <p>
-            {data.rating.rate}/5.0
-            <span>({data.rating.count} customers reviewed)</span>
-          </p>
-        </div>
+        <Rating rating={data.rating} />
+
         <div className="d-flex justify-content-between card-btn">
-          <a href="">
-            <Button text="Add to cart" classes="btn-outline" css={{ borderRadius: "120px", padding: "15px 18px", fontSize: "14px" }} />
-          </a>
-          <a href="">
+          <Button onClick={(e) => handleAddCart(e, data, quant, setCartData)} text="Add to cart" classes="btn-outline" css={{ borderRadius: "120px", padding: "15px 18px", fontSize: "14px" }} />
+
+          <Link to={`/products/${data.id}`} >
             <Button text="Buy Now" css={{ borderRadius: "120px", padding: "15px 18px", fontSize: "14px" }} />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
   )
 }
 
-export default Card;
+export default React.memo(Card);

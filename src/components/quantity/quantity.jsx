@@ -1,10 +1,12 @@
 import './quantity.scss';
 import Button from '../button/button';
 import Box from '../box/box';
-import { useState } from 'react';
+import { useEffect, useContext } from 'react';
+import { productsContext } from '../../App';
 
-const Quantity = ({ min = 1, max = 5 }) => {
-  const [quant, setQuant] = useState(min);
+
+const Quantity = ({ min = 1, max = 5, quant, setQuant, btnCss }) => {
+  quant > 5 && setQuant(5);
 
   const handleDecr = () => {
     setQuant(prevQuant => {
@@ -18,11 +20,13 @@ const Quantity = ({ min = 1, max = 5 }) => {
     });
   }
 
+
   return (
-    <div className='d-flex flex-row'>
-      <Button text="-" classes='btn-light' height='30px' width='30px' css={{ borderRadius: "50%", padding: "2px", backgroundColor: "#7700FF", color: "white", fontSize: "12px" }} action={handleDecr} />
-      <Box width='20px' height='30px' bgColor='transparent' text={quant} css={{ textAlign: "center" }} />
-      <Button text="+" classes='btn-light' height='30px' width='30px' css={{ borderRadius: "50%", padding: "2px", backgroundColor: "#7700FF", color: "white" }} action={handleIncr} />
+    <div className='d-inline-flex flex-row quantity-card'>
+      <Button text="-" classes='btn-light' height='30px' width='30px' css={{ borderRadius: "50%", padding: "2px", color: "white", fontSize: "12px", ...btnCss }} onClick={handleDecr} />
+      <input type="text" className='quantInp' value={quant} disabled />
+      {/* <Box onChange={handleQuantChange} width='20px' height='30px' bgColor='transparent' text={quant} css={{ textAlign: "center" }} /> */}
+      <Button text="+" classes='btn-light' height='30px' width='30px' css={{ borderRadius: "50%", padding: "2px", color: "white", fontSize: "12px", ...btnCss }} onClick={handleIncr} />
     </div>
   )
 }
