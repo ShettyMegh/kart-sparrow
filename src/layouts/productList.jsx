@@ -15,7 +15,6 @@ const ProductList = () => {
     setLoadMoreDisabled(false);
   }, [filterData])
 
-
   const handleLoadMore = (e) => {
     setLoadMore((prevLoadMore) => {
       const newData = filterData.slice(prevLoadMore.length, prevLoadMore.length + 3)

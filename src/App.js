@@ -20,6 +20,10 @@ function App() {
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const location = useLocation();
   const [cartData,setCartData] = useState(localStorage.getItem('products')!==null? JSON.parse(localStorage.getItem("products")) : []);
+  const [respMes,setRespMes] = useState({
+    mess:"",
+    color:""
+  });
 
   useEffect(()=>{
     localStorage.setItem("products",JSON.stringify(cartData));
@@ -43,10 +47,21 @@ function App() {
     axios
       .get((searchKey==="")?`http://localhost:3232/products?_sort=id`:`http://localhost:3232/products?title_like=${searchKey}`)
       .then((data) => {
+        setRespMes("Loading Please Wait")
         setProductsData(data.data);
         setIsLoadingProducts(false)
+        setRespMes({
+          mess:"Loading, Please Wait",
+          color:"text-success"
+        })
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setRespMes({
+          mess:"Server is down, please try again later",
+          color:"text-danger"
+        })
+        console.log(error);
+      })
   };
 
   return (
@@ -69,7 +84,7 @@ function App() {
             <Route path="cart" element={<Cart />}></Route>
             <Route path="*" element={<NotFoundError />}></Route>
           </Route>
-        </Routes> : <Response textClass="text-danger" message="Server is Down, Please Come back later" noImage={true}/>}
+        </Routes> : <Response textClass={respMes.color} message={respMes.mess} noImage={true}/>}
       </main>
       </productsContext.Provider>
       <Footer />

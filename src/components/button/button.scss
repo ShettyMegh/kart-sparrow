@@ -1,5 +1,4 @@
 .btn{
-  background-color: white;
   color: white;
   border: 1px solid #7700FF;
   background-color: #7700FF;
@@ -8,6 +7,10 @@
     border: 1px solid #7700FF;
     color: white;
   }
+}
+.btn:disabled{
+  background-color: #9f4aff;
+  border-color:#9f4aff ;
 }
 .btn-outline{
   border: 1px solid #7700FF;

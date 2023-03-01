@@ -23,12 +23,12 @@ const Product = () => {
       .get(`http://localhost:3232${location}`)
       .then((data) => {
         setProduct(data.data);
-        setLoading(false);
       })
       .catch((error) => {
         console.log(error)
-        setLoading(false)
         navigate('/product-not-found')
+      }).finally(() => {
+        setLoading(false)
       });
   };
 

@@ -23,10 +23,10 @@ const Quantity = ({ min = 1, max = 5, quant, setQuant, btnCss }) => {
 
   return (
     <div className='d-inline-flex flex-row quantity-card'>
-      <Button text="-" classes='btn-light' height='30px' width='30px' css={{ borderRadius: "50%", padding: "2px", color: "white", fontSize: "12px", ...btnCss }} onClick={handleDecr} />
+      <Button text="-" height='30px' width='30px' css={{ borderRadius: "50%", padding: "2px", color: "white", fontSize: "12px", ...btnCss }} isDisabled={(quant <= 1) ? true : false} onClick={handleDecr} />
       <input type="text" className='quantInp' value={quant} disabled />
       {/* <Box onChange={handleQuantChange} width='20px' height='30px' bgColor='transparent' text={quant} css={{ textAlign: "center" }} /> */}
-      <Button text="+" classes='btn-light' height='30px' width='30px' css={{ borderRadius: "50%", padding: "2px", color: "white", fontSize: "12px", ...btnCss }} onClick={handleIncr} />
+      <Button text="+" height='30px' width='30px' css={{ borderRadius: "50%", padding: "2px", color: "white", fontSize: "12px", ...btnCss }} isDisabled={(quant >= 5) ? true : false} onClick={handleIncr} />
     </div>
   )
 }

@@ -18,7 +18,8 @@ export const handleAddCart = (e, data, quant, setCartData) => {
     }
   })
   if (!itemFound) {
-    localCart.push({ id: data.id, title: data.title, description: data.description, price: data.price, quantity: quant, image: data.images[0], totalPrice: data.price * quant })
+    // localCart.push({ id: data.id, title: data.title, description: data.description, price: data.price, quantity: quant, image: data.images[0], totalPrice: data.price * quant })
+    localCart.push({id:data.id,quantity:quant})
   }
   localStorage.setItem("products", JSON.stringify(localCart))
   setCartData(() => localCart);
@@ -27,4 +28,8 @@ export const handleAddCart = (e, data, quant, setCartData) => {
     e.target.disabled = false;
   }, 1000)
 
+}
+
+export const fetchCartData = ()=>{
+  
 }
