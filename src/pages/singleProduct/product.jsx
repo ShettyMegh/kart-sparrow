@@ -20,7 +20,7 @@ const Product = () => {
   const location = useLocation().pathname;
   const fetchSingleData = () => {
     axios
-      .get(`${process.env.REACT_APP_BASEURL}${location}`)
+      .get(`${process.env.REACT_APP_BASEURL_PRODUCT}${location}`)
       .then((data) => {
         setProduct(data.data);
       })

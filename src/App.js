@@ -45,7 +45,7 @@ function App() {
 
   const fetchData = (searchKey="",url="") => {
     axios
-      .get((searchKey==="")?`${process.env.REACT_APP_BASEURL}/products?_sort=id`:`${process.env.REACT_APP_BASEURL}/products?title_like=${searchKey}`)
+      .get((searchKey==="")?`${process.env.REACT_APP_BASEURL}?_sort=id`:`${process.env.REACT_APP_BASEURL}?title_like=${searchKey}`)
       .then((data) => {
         setRespMes("Loading Please Wait")
         setProductsData(data.data);
