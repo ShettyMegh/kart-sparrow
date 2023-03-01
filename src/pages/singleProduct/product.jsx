@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import { productsContext } from "../App";
+import { productsContext } from "../../App";
 import { useLocation } from "react-router-dom";
-import Quantity from "../components/quantity/quantity";
-import Button from "../components/button/button";
-import Rating from "../components/product/rating/rating";
-import Response from "../components/response/response";
-import { handleAddCart } from "../actions/productCardActions";
+import Quantity from "../../components/quantity/quantity";
+import Button from "../../components/button/button";
+import Rating from "../../components/product/rating/rating";
+import Response from "../../components/response/response";
+import { handleAddCart } from "../../actions/productCardActions";
 import { useNavigate } from "react-router-dom";
 import './product.scss'
 
@@ -20,7 +20,7 @@ const Product = () => {
   const location = useLocation().pathname;
   const fetchSingleData = () => {
     axios
-      .get(`http://localhost:3232${location}`)
+      .get(`${process.env.REACT_APP_BASEURL}${location}`)
       .then((data) => {
         setProduct(data.data);
       })

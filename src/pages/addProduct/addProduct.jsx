@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { productsContext } from "../App";
-import { fetchCats } from "../actions/commonActions";
-import Button from "../components/button/button";
+import { productsContext } from "../../App";
+import { fetchCats } from "../../actions/commonActions";
+import Button from "../../components/button/button";
 import "./addProduct.scss"
 
 
@@ -15,7 +15,7 @@ const AddProduct = () => {
 
   const addProduct = (data) => {
     setUpdating(true);
-    axios.post("http://localhost:3232/products/", data).then(resp => {
+    axios.post(`${process.env.REACT_APP_BASEURL}/products/`, data).then(resp => {
       setNewProduct(resp.data);
       setUpdating(false);
       setResponse({ text: "Added Succesfully", respStatus: "alert-success" });

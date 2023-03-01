@@ -1,5 +1,5 @@
-import ProductList from "../layouts/productList";
-import Carousel from "../layouts/carousel";
+import ProductList from "../../layouts/productList/productList";
+import Carousel from "../../components/carousel/carousel";
 
 const Home = () => {
   return (
@@ -7,7 +7,7 @@ const Home = () => {
       <Carousel />
       <h3 style={{ textAlign: "center", marginTop: "50px" }}>Shop Today!</h3>
       <div className="container">
-        <ProductList/>
+        <ProductList />
       </div>
     </>
 

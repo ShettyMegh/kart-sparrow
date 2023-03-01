@@ -1,10 +1,10 @@
-import CartItem from "../layouts/cartItem";
-import Button from "../components/button/button";
-import Response from "../components/response/response";
+import CartItem from "../../components/cart/cartItem";
+import Button from "../../components/button/button";
+import Response from "../../components/response/response";
 import { useEffect, useState } from "react";
 import './cart.scss';
 import { useContext } from "react";
-import { productsContext } from "../App"
+import { productsContext } from "../../App"
 
 const Cart = () => {
 

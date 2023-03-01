@@ -1,8 +1,5 @@
 import './quantity.scss';
 import Button from '../button/button';
-import Box from '../box/box';
-import { useEffect, useContext } from 'react';
-import { productsContext } from '../../App';
 
 
 const Quantity = ({ min = 1, max = 5, quant, setQuant, btnCss }) => {

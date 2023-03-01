@@ -3,14 +3,14 @@ import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 
 import "./App.scss";
-import Header from "./layouts/header";
-import Home from "./pages/home";
-import AddProduct from "./pages/addProduct";
-import Products from "./pages/products";
-import Product from "./pages/product";
-import Footer from "./layouts/footer";
-import Cart from "./pages/cart";
-import NotFoundError from "./pages/notFoundError";
+import Header from "./layouts/header/header";
+import Home from "./pages/home/home";
+import AddProduct from "./pages/addProduct/addProduct";
+import Products from "./pages/products/products";
+import Product from "./pages/singleProduct/product";
+import Footer from "./layouts/footer/footer";
+import Cart from "./pages/cart/cart";
+import NotFoundError from "./pages/notFoundError/notFoundError";
 import Response from "./components/response/response";
 export const productsContext = createContext();
 
@@ -45,7 +45,7 @@ function App() {
 
   const fetchData = (searchKey="",url="") => {
     axios
-      .get((searchKey==="")?`http://localhost:3232/products?_sort=id`:`http://localhost:3232/products?title_like=${searchKey}`)
+      .get((searchKey==="")?`${process.env.REACT_APP_BASEURL}/products?_sort=id`:`${process.env.REACT_APP_BASEURL}/products?title_like=${searchKey}`)
       .then((data) => {
         setRespMes("Loading Please Wait")
         setProductsData(data.data);

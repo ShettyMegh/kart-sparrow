@@ -1,11 +1,11 @@
-import ProductList from "../layouts/productList";
-import Filter from "../components/filter/filter";
+import ProductList from "../../layouts/productList/productList";
+import Filter from "../../components/filter/filter";
 import './products.scss'
-import { productsContext } from "../App";
+import { productsContext } from "../../App";
 import { useContext } from "react";
 
 const Products = () => {
-  const { filterData, isLoadingProducts } = useContext(productsContext)
+  const { filterData } = useContext(productsContext)
   return (
     <>
       <div className="d-flex products">

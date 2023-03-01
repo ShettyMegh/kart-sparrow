@@ -1,7 +1,7 @@
-import Card from "../components/product/card/card"
-import Button from "../components/button/button";
-import { useContext, useState, useEffect, useRef } from "react";
-import { productsContext } from "../App";
+import Card from "../../components/product/card/card"
+import Button from "../../components/button/button";
+import { useContext, useState, useEffect } from "react";
+import { productsContext } from "../../App";
 import React from 'react';
 
 

@@ -1,8 +1,8 @@
-import Quantity from "../components/quantity/quantity";
-import Button from "../components/button/button";
+import Quantity from "../quantity/quantity";
+import Button from "../button/button";
 import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { productsContext } from "../App";
+import { productsContext } from "../../App";
 
 const CartItem = ({ cartItem, cartInfo = { qunatity: 1 } }) => {
   const { cartData, setCartData } = useContext(productsContext);
